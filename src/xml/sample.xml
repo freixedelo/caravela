@@ -1,0 +1,133 @@
+<ticket>
+    <pjmTicketId>1173826</pjmTicketId>
+    <intervalDefinition>
+        <intervalStart>
+            <date>2024-03-26</date>
+            <time>04:20:00</time>
+        </intervalStart>
+        <intervalEnd>
+            <date>2024-03-29</date>
+            <time>20:00:00</time>
+        </intervalEnd>
+    </intervalDefinition>
+    <status>Completed</status>
+    <lastRevisedDate>03/26/2024 20:58</lastRevisedDate>
+    <outageType>Continuous</outageType>
+    <companyName>Baltimore Gas and Electric Company</companyName>
+    <availability>Duration</availability>
+    <approval_risk></approval_risk>
+    <rtepQueueNumber></rtepQueueNumber>
+    <previous_status>Active</previous_status>
+    <equipment status="Open">
+        <type>BRKR</type>
+        <b1Name>RIVERSID</b1Name>
+        <b2Name>230 KV</b2Name>
+        <b3Text>RIVERSID 2345 OCB</b3Text>
+        <zone>BC</zone>
+        <intervalDefinition>
+            <intervalStart>
+                <date>2024-03-26</date>
+                <time>04:20:00</time>
+            </intervalStart>
+            <intervalEnd>
+                <date>2024-03-29</date>
+                <time>20:00:00</time>
+            </intervalEnd>
+        </intervalDefinition>
+    </equipment>
+    <equipment status="Open">
+        <type>BRKR</type>
+        <b1Name>BRANDONS</b1Name>
+        <b2Name>230 KV</b2Name>
+        <b3Text>BRANDONS 2345 OCB</b3Text>
+        <zone>BC</zone>
+        <intervalDefinition>
+            <intervalStart>
+                <date>2024-03-26</date>
+                <time>04:20:00</time>
+            </intervalStart>
+            <intervalEnd>
+                <date>2024-03-29</date>
+                <time>20:00:00</time>
+            </intervalEnd>
+        </intervalDefinition>
+    </equipment>
+    <equipment status="Open">
+        <type>BRKR</type>
+        <b1Name>BRANDONS</b1Name>
+        <b2Name>230 KV</b2Name>
+        <b3Text>BRANDONS 2345/AQCS#6 TIE</b3Text>
+        <zone>BC</zone>
+        <intervalDefinition>
+            <intervalStart>
+                <date>2024-03-26</date>
+                <time>04:20:00</time>
+            </intervalStart>
+            <intervalEnd>
+                <date>2024-03-29</date>
+                <time>20:00:00</time>
+            </intervalEnd>
+        </intervalDefinition>
+    </equipment>
+    <equipment status="Open">
+        <type>LINE</type>
+        <b1Name>BRANDONS</b1Name>
+        <b2Name>230 KV</b2Name>
+        <b3Text>BRANDONS-RIVERSID 2345</b3Text>
+        <zone>BC</zone>
+        <intervalDefinition>
+            <intervalStart>
+                <date>2024-03-26</date>
+                <time>04:20:00</time>
+            </intervalStart>
+            <intervalEnd>
+                <date>2024-03-29</date>
+                <time>20:00:00</time>
+            </intervalEnd>
+        </intervalDefinition>
+    </equipment>
+    <cause description="Other">-1</cause>
+    <cause description="Operational: Emergency">32</cause>
+    <dateLogs><!--  -->
+        <datelog>
+            <intervalDefinition>
+                <intervalStart>
+                    <date>2024-03-26</date>
+                    <time>04:20:00</time>
+                </intervalStart>
+                <intervalEnd>
+                    <date>2024-03-29</date>
+                    <time>20:00:00</time>
+                </intervalEnd>
+            </intervalDefinition>
+            <timestamp>03/26/2024 08:03</timestamp>
+        </datelog>
+        <datelog>
+            <intervalDefinition>
+                <intervalStart>
+                    <date>2024-03-26</date>
+                    <time>04:20:00</time>
+                </intervalStart>
+                <intervalEnd>
+                    <date>2024-03-26</date>
+                    <time>20:00:00</time>
+                </intervalEnd>
+            </intervalDefinition>
+            <timestamp>03/26/2024 04:22</timestamp>
+        </datelog>
+    </dateLogs>
+    <statusLogs>
+        <statusLog>
+            <status>Completed</status>
+            <statusTime>03/26/2024 20:58</statusTime>
+        </statusLog>
+        <statusLog>
+            <status>Active</status>
+            <statusTime>03/26/2024 04:36</statusTime>
+        </statusLog>
+        <statusLog>
+            <status>Approved</status>
+            <statusTime>03/26/2024 04:36</statusTime>
+        </statusLog>
+    </statusLogs>
+</ticket>
