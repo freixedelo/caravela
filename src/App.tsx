@@ -1,23 +1,45 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { XMLParser } from "fast-xml-parser";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+} from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { Paper, Button } from "@mui/material";
+import axios from "axios";
+import { XMLParser } from "fast-xml-parser";
+import { useEffect, useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
+interface Equipment {
+  b1Name: string;
+  b2Name: string;
+  b3Text: string;
+  intervalDefinition: {
+    intervalStart: {
+      date: string;
+      time: string;
+    };
+    intervalEnd: {
+      date: string;
+      time: string;
+    };
+  };
+}
 interface Ticket {
   pjmTicketId: number;
   companyName: string;
   outageType: string;
   availability: string;
   status: string;
-  // equipment: any;
+  equipment: Equipment[];
 }
 
 interface Filter {
@@ -52,10 +74,13 @@ function App() {
 
   const onSubmit: SubmitHandler<Filter> = (data) => {
     console.log(data);
+    setFilteredData(
+      xmlData?.filter((ticket) => ticket.outageType === data.outageType) || []
+    );
   };
 
   return (
-    <div className="p-10 bg-slate-300 h-screen">
+    <Container maxWidth="xl">
       <h1 className="text-center font-semibold uppercase my-3 text-2xl">
         {"Caravela Project"}
       </h1>
@@ -69,11 +94,36 @@ function App() {
               <TextField {...field} placeholder="Outage status" />
             )}
           />
+
           <Controller
             name="outageType"
             control={control}
             render={({ field }) => (
-              <TextField {...field} placeholder="Outage type" />
+              <>
+                <Select
+                  {...field}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Select"
+                  placeholder="Select"
+
+                  //onChange={handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={"Continuous"}>Continuous</MenuItem>
+                  <MenuItem value={"DailyNoWeekends"}>
+                    Daily No Weekends
+                  </MenuItem>
+                  <MenuItem value={"ContinuousNoWeekends"}>
+                    Continuous No Weekends
+                  </MenuItem>
+                  <MenuItem value={"DailyIncludingWeekends"}>
+                    Daily Including Weekends
+                  </MenuItem>
+                </Select>
+              </>
             )}
           />
           <Button variant="contained" type="submit">
@@ -91,7 +141,7 @@ Filtro para entradas de equipamento:
       </section>
       <section>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>pjmTicketId</TableCell>
@@ -118,7 +168,7 @@ Filtro para entradas de equipamento:
           </Table>
         </TableContainer>
       </section>
-    </div>
+    </Container>
   );
 }
 
