@@ -21,6 +21,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
+import { isEmpty } from "lodash";
 
 interface Equipment {
   b1Name: string;
@@ -110,44 +111,48 @@ function App() {
     equipmentStartDate,
     equipmentEndDate,
   }) => {
-    console.log(equipmentStartDate);
-    let filteredData: Ticket[] = [];
+    let filteredData: Ticket[] | null = xmlData;
 
-    if (xmlData && outageStatus) {
-      filteredData = xmlData.filter((ticket) =>
+    if (filteredData && !isEmpty(outageStatus)) {
+      filteredData = filteredData.filter((ticket) =>
         ticket.status.includes(outageStatus)
       );
     }
 
-    if (xmlData && outageType) {
-      filteredData = xmlData.filter(
+    if (filteredData && !isEmpty(outageType) && outageType !== " ") {
+      console.warn(outageType);
+      filteredData = filteredData.filter(
         (ticket) => ticket.outageType === outageType
       );
     }
 
-    if (xmlData && voltage) {
-      filteredData = xmlData.filter(
+    if (filteredData && !isEmpty(voltage)) {
+      filteredData = filteredData.filter(
         (ticket) =>
           Array.isArray(ticket?.equipment) &&
           ticket?.equipment?.find((e) => e.b2Name.includes(voltage))
       );
     }
 
-    if (xmlData && equipment) {
-      filteredData = xmlData.filter(
+    if (filteredData && !isEmpty(equipment)) {
+      filteredData = filteredData.filter(
         (ticket) =>
           Array.isArray(ticket?.equipment) &&
           ticket?.equipment?.find(
             (e) =>
-              e?.b1Name?.includes(equipment) || e?.b3Text?.includes(equipment)
+              e?.b1Name?.toString().includes(equipment) ||
+              e?.b3Text?.includes(equipment)
           )
       );
     }
 
     //(startdate <= interval_end_datetime) &  (enddate >= interval_start_datetime)
-
-    if (xmlData && equipmentStartDate && equipmentEndDate) {
-      filteredData = xmlData.filter(
+    if (
+      filteredData &&
+      !isEmpty(equipmentStartDate) &&
+      !isEmpty(equipmentEndDate)
+    ) {
+      filteredData = filteredData.filter(
         (ticket) =>
           Array.isArray(ticket?.equipment) &&
           ticket?.equipment?.find((e) => {
@@ -167,7 +172,7 @@ function App() {
 
     console.log({ filteredData });
 
-    setFilteredData(filteredData);
+    filteredData && setFilteredData(filteredData);
   };
 
   if (!xmlData)
